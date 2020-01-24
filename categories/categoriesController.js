@@ -14,11 +14,19 @@ router.post('/categories/save', (req, res) => {
             title: title,
             slug: slugify(title)
         }).then(() =>{
-            res.redirect('/');
+            res.redirect('/admin/categories');
         });
     }else {
         res.redirect('/admin/categories/new');
     }
+});
+
+router.get('/admin/categories', (req, res) => {
+    Category.findAll().then((categories) => {
+        res.render('admin/categories/index',{
+            categories:categories
+        }); // passando categories do banco para o front end
+    });
 });
 
 module.exports = router;

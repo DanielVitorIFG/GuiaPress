@@ -1,0 +1,37 @@
+<%- include('../../partials/header.ejs') %> 
+<body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container"><hr>
+        <div class="container"><hr>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Categorias</h2>
+                </div>
+                <div class="card-body table-responsive-sm">
+                    <table class="table table-bordered table-hover">
+                        <caption>Lista de categorias</caption>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Id</th>
+                                <th>Título</th>
+                                <th>Slug</th>
+                                <th>Acões</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% categories.forEach(category => { %>
+                                <tr>
+                                    <th><%= category.id %> </th>
+                                    <th><%= category.title %> </th>
+                                    <th><%= category.slug %> </th>
+                                    <th></th>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>    
+            </div>
+        </div>     
+    </div> 
+</body>
+<%- include('../../partials/footer.ejs') %> 
