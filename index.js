@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
 const connection = require('./databases/connection');
+const bodyParser = require('body-parser');
 
 const categoriesController = require('./categories/categoriesController');
 const articlesController = require('./articles/articlesController');
+
+const Article = require('./articles/Articles');
+const Category = require('./categories/Category');
 
 connection
     .authenticate()
@@ -12,8 +16,8 @@ connection
 
 app.set('view engine','ejs');
 app.use(express.static('public'));
-app.use(express.urlencoded({extended:true})); // fazer o parsing das requisições que ele recebe.
-app.use(express.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 app.use('/',categoriesController);
 app.use('/',articlesController);
