@@ -6,6 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Categorias</h2>
+                    <a href="/admin/categories/new" class="btn btn-dark">Criar Nova Categoria</a>
                 </div>
                 <div class="card-body table-responsive-sm">
                     <table class="table table-bordered table-hover">
@@ -24,7 +25,15 @@
                                     <th><%= category.id %> </th>
                                     <th><%= category.title %> </th>
                                     <th><%= category.slug %> </th>
-                                    <th></th>
+                                    <th>
+                                        <button class="btn btn-warning">Editar</button>
+                                        
+                                        <!--Macete-->
+                                        <form action="/categories/delete" method="POST" onsubmit="confirmDelete(event,this)" style="display:inline;">
+                                            <input type="hidden" name="id" value="<%=category.id%>">
+                                            <button class="btn btn-danger">Excluir</button>
+                                        </form>
+                                    </th>
                                 </tr>
                             <% }) %>
                         </tbody>
@@ -35,3 +44,4 @@
     </div> 
 </body>
 <%- include('../../partials/footer.ejs') %> 
+<script src="/js/confirmDelete.js"></script>
