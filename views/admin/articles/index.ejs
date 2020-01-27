@@ -5,36 +5,36 @@
         <div class="container"><hr>
             <div class="card">
                 <div class="card-header">
-                    <h2>Categorias</h2>
-                    <a href="/admin/categories/new" class="btn btn-dark">Criar Nova Categoria</a>
+                    <h2>Artigos</h2>
+                    <a href="/admin/articles/new" class="btn btn-dark">Criar Novo Artigo</a>
                 </div>
                 <div class="card-body table-responsive-sm">
                     <table class="table table-bordered table-hover">
-                        <caption>Lista de categorias</caption>
+                        <caption>Lista de artigos</caption>
                         <thead class="thead-dark">
                             <tr>
                                 <th>Id</th>
                                 <th>Título</th>
                                 <th>Slug</th>
+                                <th>Categoria</th>
                                 <th>Acões</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% categories.forEach(category => { %>
-                                <tr>
-                                    <td><%= category.id %> </td>
-                                    <td><%= category.title %> </td>
-                                    <td><%= category.slug %> </td>
+                            <% articles.forEach(article => { %>
+                               <tr>
+                                    <td><%= article.id %></td>
+                                    <td><%= article.title %></td>
+                                    <td><%= article.slug %></td>
+                                    <td><%= article.category.title %></td>
                                     <td>
-                                        <a href="/admin/categories/edit/<%=category.id%>" class="btn btn-warning">Editar</a>
-                                        
                                         <!--Macete-->
-                                        <form action="/categories/delete" method="POST" onsubmit="confirmDelete('categoria',event,this)" style="display:inline;">
-                                            <input type="hidden" name="id" value="<%=category.id%>">
+                                        <form action="/articles/delete" method="POST" onsubmit="confirmDelete('artigo',event,this)" style="display:inline;">
+                                            <input type="hidden" name="id" value="<%=article.id%>">
                                             <button class="btn btn-danger">Excluir</button>
                                         </form>
                                     </td>
-                                </tr>
+                               </tr>
                             <% }) %>
                         </tbody>
                     </table>
