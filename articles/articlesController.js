@@ -52,5 +52,61 @@ router.post('/articles/delete',(req,res) => {
     }
 });
 
+router.get('/admin/articles/edit/:id', (req,res) => {
+    let id = req.params.id;
+    
+    if(isNaN(id)) res.redirect('/admin/articles');
+    
+    Article.findByPk(id).then(article => {
+        
+        Category.findAll().then(categories => {
+            res.render('admin/articles/edit', {categories:categories,article:article})
+        })
+    }).catch(err => {
+        res.redirect('/');
+    })
+});
+
+router.post('/articles/update', (req,res) => {
+    let id = req.body.id; // id do input hidden
+    let title = req.body.title // vem do input
+    let body = req.body.body // body vem no text area
+    let category = req.body.category // vem do select
+
+    Article.update({title: title, body: body, slug: slugify(title), categoryId: category},{
+        where: {
+            id: id
+        }
+    }).then(err => {
+        res.redirect('/admin/articles');
+    })
+
+});
+
+router.get('/articles/page/:num', (req,res) => {
+    var pageLimit = 4;
+
+    let page = req.params.num;
+    let offset = 0;
+
+    (isNaN(page) || page == 0 || page == 1) ? offset = 0 : offset = (parseInt(page)-1)* pageLimit;  // offset multiplicado pelo numero de elemento que eu quero ter na página
+
+    Article.findAndCountAll({
+        limit: pageLimit,
+        offset: offset,
+        order: [['id','DESC']]
+    }).then(articles => {
+        let next;
+        (offset + pageLimit >= articles.count) ? next = false : next = true;
+
+        let result = {
+            next: next,
+            articles: articles
+        }
+
+        res.json(result);
+    })
+});
+
 
 module.exports = router;

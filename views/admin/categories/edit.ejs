@@ -7,7 +7,7 @@
                 <h2>Edição de categoria</h2>
             </div>
             <div class="card-body">
-                <form method="POST" action="/categories/update">
+                <form method="POST" action="/categories/update"> <!--Chamando a rota-->
                     <input class="form-control" type="text" name="title" value="<%=category.title%> " placeholder="Defina o Título da categoria">
                     <br>
                     <input type="hidden" name="id" value="<%=category.id%>">

@@ -8,7 +8,7 @@
                     <h2>Artigos</h2>
                     <a href="/admin/articles/new" class="btn btn-dark">Criar Novo Artigo</a>
                 </div>
-                <div class="card-body table-responsive-sm">
+                <div class="card-body table-responsive-lg">
                     <table class="table table-bordered table-hover">
                         <caption>Lista de artigos</caption>
                         <thead class="thead-dark">
@@ -28,10 +28,11 @@
                                     <td><%= article.slug %></td>
                                     <td><%= article.category.title %></td>
                                     <td>
-                                        <!--Macete-->
-                                        <form action="/articles/delete" method="POST" onsubmit="confirmDelete('artigo',event,this)" style="display:inline;">
+                                        <a href="/admin/articles/edit/<%=article.id%>" class="btn btn-warning btn-full">Editar</a>
+
+                                        <form action="/articles/delete" method="POST" style="display: inline;"  onsubmit="confirmDelete('artigo',event,this)">
                                             <input type="hidden" name="id" value="<%=article.id%>">
-                                            <button class="btn btn-danger">Excluir</button>
+                                            <button class="btn btn-danger btn-full">Excluir</button>
                                         </form>
                                     </td>
                                </tr>

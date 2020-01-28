@@ -57,7 +57,7 @@ router.get('/admin/categories/edit/:id', (req,res) =>{
   
     Category.findByPk(id).then(category => {
         if(category != undefined) {
-            res.render('admin/categories/edit',{
+            res.render('admin/categories/edit',{ // renderizando a view edit
                 category:category
             });
         }else {
