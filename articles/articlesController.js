@@ -34,7 +34,7 @@ router.post('/articles/save', (req,res) => {
 });
 
 router.post('/articles/delete',(req,res) => {
-    var id = req.body.id;
+    var id = req.body.id; // pegando o id do input hidden
     if (id != undefined) {
       if (!isNaN(id)) { // Se for um número
         Article.destroy({

@@ -1,0 +1,39 @@
+<%- include('../../partials/header.ejs') %> 
+<body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container"><hr>
+        <div class="card-header">
+            <h2>Usuários</h2>
+            <a href="/admin/users/create" class="btn btn-dark">Criar novo usuário</a>
+        </div>
+        <div class="card-body table-responsive-sm">
+            <table class="table table-bordered table-hover">
+                <caption>Lista de usuários</caption>
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>E-mail</th>
+                        <th>Acões</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user.id %> </td>
+                            <td><%= user.email %> </td>
+                            <td>
+                                <!--Macete-->
+                                <form action="/users/delete" method="POST" onsubmit="confirmDelete('este administrador',event,this)" style="display:inline;">
+                                    <input type="hidden" name="id" value="<%= user.id %>">
+                                    <button class="btn btn-danger">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>    
+    </div> 
+</body>
+<%- include('../../partials/footer.ejs') %> 
+<script src="/js/confirmDelete.js"></script>
