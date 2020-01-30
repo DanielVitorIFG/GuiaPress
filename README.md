@@ -12,11 +12,10 @@ Você sendo um admin, terá acesso a criação de categorias e artigos.
 Já um usuário, pode ler os artigos, que estão separados por categorias.
 
 ![](/public/img/lendoartigo.png)
+![](/public/img/login.png)
 ![](/public/img/paineldecategorias.png)
 ![](/public/img/paineldeartigos.png)
 ![](/public/img/novoartigo.png)
-![](/public/img/login.png)
-
 
 ## Feramentas utilizadas
 
